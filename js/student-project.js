@@ -91,7 +91,7 @@ function dropBlock(event) {
 	const target = event.target;
 
 	// check if the container already has a block
-	if (target.children.length !== 1) {
+	if (target.id !== "block-bank" && target.children.length !== 1) {
 		event.preventDefault();
 		return;
 	}
@@ -101,7 +101,7 @@ function dropBlock(event) {
 	let type = event.dataTransfer.getData("type");
 
 	// check if dropping into the correct container
-	if (target.id.indexOf(type) === -1) {
+	if (target.id !== "block-bank" && target.id.indexOf(type) === -1) {
 		event.preventDefault();
 		return;
 	}
