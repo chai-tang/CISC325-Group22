@@ -7,7 +7,7 @@ window.addEventListener("load", function () {
 // Adds block dragging functionality to all block elements
 function makeBlocksDragable() {
 	// Get all the block objects
-	var blocks = document.getElementsByClassName("block");
+	const blocks = document.getElementsByClassName("block");
 
 	// When a block is picked up, set global data variables to its values.
 	for (i = 0; i < blocks.length; i++) {
@@ -29,13 +29,12 @@ function makeAreasDropable() {
 	// When a block is dropped, check the value and type global data variables
 	// and append the appropriate block to that container.
 
-	var blockBank = document.getElementById("block-bank");
-	var inBlock1 = document.getElementById("input-block-1");
-	var opBlock = document.getElementById("operator-block");
-	var inBlock2 = document.getElementById("input-block-2");
-	let list = [inBlock1, inBlock2, blockBank, opBlock];
+	const blockBank = document.getElementById("block-bank");
+	const inBlock1 = document.getElementById("input-block-1");
+	const opBlock = document.getElementById("operator-block");
+	const inBlock2 = document.getElementById("input-block-2");
 
-	list.forEach(function (item) {
+	[inBlock1, inBlock2, blockBank, opBlock].forEach((item) => {
 		item.addEventListener("dragover", function (event) {
 			event.preventDefault();
 		});
@@ -84,6 +83,7 @@ function updateOutputBlock() {
 
 // adds a block to the given event target
 function dropBlock(event) {
+	console.log(event.dataTransfer);
 	const block = document.getElementById("last-selected");
 	if (!block) {
 		event.preventDefault();
