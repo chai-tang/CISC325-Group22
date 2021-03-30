@@ -17,7 +17,7 @@ function makeBlocksDragable() {
 			event.dataTransfer.setData("type", event.target.getAttribute("type"));
 			// set this block as the last selected, so that it gets removed when dropped
 			// make sure not to remove the output block though or else it's gone forever lmao
-			if (this.getAttribute("type") != "output") {
+			if (this.getAttribute("type") !== "output") {
 				this.setAttribute("id", "last-selected");
 			}
 		});
@@ -34,13 +34,14 @@ function makeAreasDropable() {
 	var opBlock = document.getElementById("operator-block");
 	var inBlock2 = document.getElementById("input-block-2");
 	let list = [inBlock1, inBlock2, blockBank, opBlock];
+
 	list.forEach(function (item) {
 		item.addEventListener("dragover", function (event) {
 			event.preventDefault();
 		});
 		item.addEventListener("drop", function (event) {
 			event.preventDefault();
-			dropBlock(event);
+			dropBlock(event, item);
 		});
 	});
 }
@@ -83,30 +84,39 @@ function updateOutputBlock() {
 
 // adds a block to the given event target
 function dropBlock(event) {
+	const block = document.getElementById("last-selected");
+	block.setAttribute("id", null);
+
 	// check if the block can be dropped into the container
 	const target = event.target;
 
 	// check if the container already has a block
-	if (target.children.length != 1) {
+	if (target.children.length !== 1) {
 		event.preventDefault();
 		return;
-	}
-
-	// attempt to destroy the old block
-	// sometimes the block is simply too powerful to be destroyed though
-	try {
-		destroyBlock();
-	} catch (err) {
-		console.log(err);
 	}
 
 	// get the data variables
 	const value = event.dataTransfer.getData("value");
 	let type = event.dataTransfer.getData("type");
 
+	// check if dropping into the correct container
+	if (target.id.indexOf(type) === -1) {
+		event.preventDefault();
+		return;
+	}
+
 	// if the type is output, change it to input
-	if (type == "output") {
+	if (type === "output") {
 		type = "input";
+	}
+
+	// attempt to destroy the old block
+	// sometimes the block is simply too powerful to be destroyed though
+	try {
+		block.remove();
+	} catch (err) {
+		console.log(err);
 	}
 
 	// create a block object based on said values
@@ -122,9 +132,4 @@ function dropBlock(event) {
 	makeBlocksDragable();
 	// update the output block
 	updateOutputBlock();
-}
-
-// removes the last selected block
-function destroyBlock() {
-	document.getElementById("last-selected").remove();
 }
