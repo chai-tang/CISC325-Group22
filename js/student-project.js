@@ -85,6 +85,12 @@ function updateOutputBlock() {
 // adds a block to the given event target
 function dropBlock(event) {
 	const block = document.getElementById("last-selected");
+	if (!block) {
+		event.preventDefault();
+		return;
+	}
+
+	// Remove last-selected id
 	block.setAttribute("id", null);
 
 	// check if the block can be dropped into the container
