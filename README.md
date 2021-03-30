@@ -17,10 +17,7 @@ Student Project Page
 
 Known Issues:
 
-- You can drag input blocks into the operation area and vice versa. That goes about as well as you'd expect.
-- You can drag the output block into the other areas, creating an all new block in the process. Considering calling this a feature instead of a bug because it's neat.
-- You can drag blocks into other blocks. At first it looks like a really cool intentional feature, until you realize that it breaks everything.
-- The CSS breaks constantly when you do weird stuff with the blocks, including trying to have more than four blocks in the block bank. 
+- Unable to have more than four blocks in the block bank at a time
 
 # Planned Functionality:
 
