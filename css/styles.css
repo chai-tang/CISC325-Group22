@@ -269,6 +269,14 @@ form {
 	font-weight: bold;
 }
 
+.block[type="operator"] {
+	background-color: lightcoral;
+}
+
+.block[type="output"] {
+	background-color: lightgreen;
+}
+
 .block:hover {
 	background-color: rgb(126, 156, 167);
 }
