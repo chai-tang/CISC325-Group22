@@ -83,6 +83,15 @@ function updateOutputBlock() {
 
 // adds a block to the given event target
 function dropBlock(event) {
+	// check if the block can be dropped into the container
+	const target = event.target;
+
+	// check if the container already has a block
+	if (target.children.length != 1) {
+		event.preventDefault();
+		return;
+	}
+
 	// attempt to destroy the old block
 	// sometimes the block is simply too powerful to be destroyed though
 	try {
@@ -92,8 +101,8 @@ function dropBlock(event) {
 	}
 
 	// get the data variables
-	var value = event.dataTransfer.getData("value");
-	var type = event.dataTransfer.getData("type");
+	const value = event.dataTransfer.getData("value");
+	let type = event.dataTransfer.getData("type");
 
 	// if the type is output, change it to input
 	if (type == "output") {
@@ -101,14 +110,14 @@ function dropBlock(event) {
 	}
 
 	// create a block object based on said values
-	var newBlock = document.createElement("div");
+	const newBlock = document.createElement("div");
 	newBlock.innerHTML = value;
 	newBlock.setAttribute("class", "block");
 	newBlock.setAttribute("value", value);
 	newBlock.setAttribute("type", type);
 	newBlock.setAttribute("draggable", true);
 	// append it to the target
-	event.target.appendChild(newBlock);
+	target.appendChild(newBlock);
 	// make it dragable
 	makeBlocksDragable();
 	// update the output block
