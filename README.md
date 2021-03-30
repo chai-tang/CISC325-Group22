@@ -18,6 +18,7 @@ Student Project Page
 Known Issues:
 
 - Block bank CSS can't fit more than four blocks at once
+- Block text isn't vertically centered
 
 # Planned Functionality:
 
