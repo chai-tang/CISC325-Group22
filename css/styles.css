@@ -278,7 +278,7 @@ form {
 }
 
 .block:hover {
-	background-color: rgb(126, 156, 167);
+	filter: brightness(85%);
 }
 
 #block-bank .block {
