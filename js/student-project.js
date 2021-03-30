@@ -45,38 +45,38 @@ function makeAreasDropable() {
 	});
 }
 
+function calculateResult(in1, in2, op) {
+	switch (op) {
+		case "+":
+			return in1 + in2;
+		case "-":
+			return in1 - in2;
+		default:
+			return null;
+	}
+}
+
 // Updates the value in the output block based on the values in the inputs/operator
 // Right now it's hard coded to only to basic math because this turned out to be a lot more work than expected
 function updateOutputBlock() {
-	// get the output block element
-	var outBlock = document.getElementById("output-block").children[1];
+	// get blocks
+	const outBlock = document.getElementById("output-block").children[1];
+	const input1 = document.getElementById("input-block-1").children[1];
+	const input2 = document.getElementById("input-block-2").children[1];
+	const opBlock = document.getElementById("operator-block").children[1];
 
-	// get the input blocks
-	const block1 = document.getElementById("input-block-1").children[1];
-	const block2 = document.getElementById("input-block-2").children[1];
+	let result = "";
 
-	// get the input block values
-	if (block1 && block1.hasAttribute("value") && block2 && block2.hasAttribute("value")) {
-		var in1 = block1.getAttribute("value");
-		var in2 = block2.getAttribute("value");
-	} else {
-		outBlock.innerHTML = "";
-		outBlock.setAttribute("value", "");
-		return;
+	// if all blocks are present
+	if (input1 && input2 && opBlock && outBlock) {
+		// get values
+		const in1 = input1.getAttribute("value");
+		const in2 = input2.getAttribute("value");
+		const op = opBlock.getAttribute("value");
+
+		result = calculateResult(parseInt(in1), parseInt(in2), op);
 	}
 
-	// get the operator block value
-	var op = document.getElementById("operator-block").children[1].getAttribute("value");
-
-	// do the operation:
-	var result;
-	if (op == "+") {
-		result = parseInt(in1) + parseInt(in2);
-	} else if (op == "-") {
-		result = parseInt(in1) - parseInt(in2);
-	}
-
-	// update the output block
 	outBlock.innerHTML = result;
 	outBlock.setAttribute("value", result);
 }
