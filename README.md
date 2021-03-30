@@ -19,6 +19,8 @@ Known Issues:
 
 - Block bank CSS can't fit more than four blocks at once
 - Block text isn't vertically centered
+- Zooming In/Out (not at 100%) has negative effect on CSS
+- Can't see entire student page without scrolling on larger monitors (probably due to table taking 100% width)
 
 # Planned Functionality:
 
