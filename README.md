@@ -17,7 +17,7 @@ Student Project Page
 
 Known Issues:
 
-- Unable to have more than four blocks in the block bank at a time
+- Block bank CSS can't fit more than four blocks at once
 
 # Planned Functionality:
 
