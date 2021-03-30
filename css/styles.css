@@ -225,17 +225,17 @@ form {
 }
 
 #input-block-1 h2 {
-	background-color: #fb7d44;
-	border-bottom: 1px solid black;
-}
-
-#operator-block h2 {
 	background-color: #2a92bf;
 	border-bottom: 1px solid black;
 }
 
+#operator-block h2 {
+	background-color: #fb4a44;
+	border-bottom: 1px solid black;
+}
+
 #input-block-2 h2 {
-	background-color: #f4ce46;
+	background-color: #2a92bf;
 	border-bottom: 1px solid black;
 }
 
